@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="cadastrocliente.css">
+</head>
+<body>
+<div class="container" id="conPrincipal">
+<form action="_inserir_up.php" method="POST">
+    <div class="form-group">
+        <h4>Cadastro de Upgrade</h4>
+
+        <div class="form-group">
+          <label>Funcionário</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="funcionario">
+          <option>Nicolas Barletta</option>
+            <option>Vitória Palmesciano</option>
+            <option>Paloma Victória</option>
+          </select>
+        </div>
+
+        <label>CPF Cliente</label>
+        <input type="number" class="form-control" id="cpfCliente" name="cpfCliente" placeholder="Insira o CPF do Cliente" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label>Contrato Cliente</label>
+        <input type="number" class="form-control" id="contratoCliente" name="contrato" placeholder="Insira o Número do Contrato" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label>Nome Cliente</label>
+        <input type="text" class="form-control" id="nomeCliente" name="nomeCliente" placeholder="Insira o Nome do Cliente" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Plano Antigo</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="planoAntigo">
+          <?php 
+          include 'conexao.php';
+          $sql = "SELECT * FROM planos";
+          $inserir = mysqli_query($conexao,$sql);
+          while ($array = mysqli_fetch_array($inserir)) {
+
+          echo $id_plano = $array['id_plano'];
+          echo $nome_plano = $array['plano'];
+          ?>
+            <option><?php echo $nome_plano ?></option>
+          <?php }
+          ?>
+        </select>
+      </div>
+
+
+      <div class="form-group">
+        <label>Plano Novo</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="planoNovo">
+        <option>Combo Casa</option>
+          <option>Combo Você</option>
+          <option>Combo Família</option>
+          <option>Combo Família Total</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Quantidade de Chips</label>
+        <input type="number" class="form-control" name="qtdChip" id="qtdChip" placeholder="Insira a Quantidade de Chips" autocomplete="off">
+      </div>
+
+      <div class="form-group">
+        <label>Data</label>
+        <input type="text" class="form-control" name="dataUp" id="dataUp" placeholder="Insira a Data do UP. (Ex: 26/10)" autocomplete="off">
+      </div>
+      <div id="btnSubmit">
+      <button type="submit" class="btn btn-success">Cadastrar</button>&nbsp;
+      <a href="index.php" role="button" class="btn btn-sm btn-warning">Voltar</a>
+    </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="js/bootstrap.js"></script>
+</body>
+</html>
